@@ -36,8 +36,8 @@ const projects: Project[] = [
     title: 'Personal Portfolio Website',
     description: 'A fully responsive and artistic portfolio site to showcase projects, skills, and personal activities, designed to support a tech career and personal branding.',
     image: '/assets/images/projects/project2-placeholder.jpg',
-    tags: ['HTML', 'CSS', 'JavaScript', 'Netlify'],
-  //   github: 'https://github.com'
+    tags: ['AI', 'HTML', 'CSS', 'JavaScript', 'Netlify'],
+    github: 'https://github.com/bettysumnikova/portfolio-website'
   },
   {
     id: 3,
