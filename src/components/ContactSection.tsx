@@ -75,7 +75,6 @@ const ContactSection: React.FC = () => {
         if (response.ok) {
           setIsSubmitted(true);
           setFormState({ name: '', email: '', message: '' });
-          
           setTimeout(() => {
             setIsSubmitted(false);
           }, 5000);
@@ -93,14 +92,12 @@ const ContactSection: React.FC = () => {
         <div className="w-20 h-1 bg-accent mb-10"></div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left Column - Contact Info */}
           <div>
             <p className="text-text/70 mb-8">
-              Have a project in mind or just want to say hello? I'd love to hear from you.
+              Have a project in mind or just want to say hello? I'd love to hear from you. 
               Fill out the form or reach out through any of the platforms below.
             </p>
-
-            {/* Email */}
+            
             <div className="space-y-6">
               <div className="flex items-center group">
                 <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
@@ -116,8 +113,7 @@ const ContactSection: React.FC = () => {
                   </a>
                 </div>
               </div>
-
-              {/* GitHub */}
+              
               <div className="flex items-center group">
                 <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
                   <Github className="text-accent" size={20} />
@@ -134,8 +130,7 @@ const ContactSection: React.FC = () => {
                   </a>
                 </div>
               </div>
-
-              {/* LinkedIn */}
+              
               <div className="flex items-center group">
                 <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
                   <Linkedin className="text-accent" size={20} />
@@ -154,8 +149,7 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Right Column - Contact Form */}
+          
           <div>
             <form
               name="contact"
@@ -171,8 +165,7 @@ const ContactSection: React.FC = () => {
                   Don't fill this out if you're human: <input name="bot-field" />
                 </label>
               </p>
-
-              {/* Name */}
+              
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-text/80 mb-1">
                   Name
@@ -189,8 +182,7 @@ const ContactSection: React.FC = () => {
                 />
                 {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
               </div>
-
-              {/* Email */}
+              
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-text/80 mb-1">
                   Email
@@ -207,8 +199,7 @@ const ContactSection: React.FC = () => {
                 />
                 {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
               </div>
-
-              {/* Message */}
+              
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-text/80 mb-1">
                   Message
@@ -225,8 +216,7 @@ const ContactSection: React.FC = () => {
                 />
                 {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
               </div>
-
-              {/* Submit Button */}
+              
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -243,8 +233,7 @@ const ContactSection: React.FC = () => {
                   </>
                 )}
               </button>
-
-              {/* Success Message */}
+              
               {isSubmitted && (
                 <div className="p-4 bg-accent/10 border border-accent/20 text-accent-dark rounded-lg">
                   Thanks for your message! I'll get back to you soon.
