@@ -40,13 +40,11 @@ const ContactSection: React.FC = () => {
     if (!formState.name.trim()) {
       newErrors.name = 'Name is required';
     }
-
     if (!formState.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^\S+@\S+\.\S+$/.test(formState.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-
     if (!formState.message.trim()) {
       newErrors.message = 'Message is required';
     }
@@ -57,10 +55,10 @@ const ContactSection: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (!validateForm()) {
-      e.preventDefault(); // prevent submission if invalid
+      e.preventDefault(); // stop the form if validation fails
     } else {
       setIsSubmitting(true);
-      // Let the form submit naturally
+      // Let the browser POST the form normally so Netlify can capture it
     }
   };
 
@@ -78,24 +76,54 @@ const ContactSection: React.FC = () => {
             </p>
 
             <div className="space-y-6">
-              <ContactInfo
-                icon={<Mail className="text-accent" size={20} />}
-                label="Email"
-                link="mailto:alzbeta.sumnikova@gmail.com"
-                text="alzbeta.sumnikova@gmail.com"
-              />
-              <ContactInfo
-                icon={<Github className="text-accent" size={20} />}
-                label="GitHub"
-                link="https://github.com/bettysumnikova"
-                text="github.com/bettysumnikova"
-              />
-              <ContactInfo
-                icon={<Linkedin className="text-accent" size={20} />}
-                label="LinkedIn"
-                link="https://linkedin.com/in/alzbetasumnikova"
-                text="linkedin.com/in/alzbetasumnikova"
-              />
+              <div className="flex items-center group">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
+                  <Mail className="text-accent" size={20} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-text/60 mb-1">Email</h4>
+                  <a 
+                    href="mailto:alzbeta.sumnikova@gmail.com" 
+                    className="text-text hover:text-accent transition-colors duration-300"
+                  >
+                    alzbeta.sumnikova@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center group">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
+                  <Github className="text-accent" size={20} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-text/60 mb-1">GitHub</h4>
+                  <a 
+                    href="https://github.com/bettysumnikova" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-text hover:text-accent transition-colors duration-300"
+                  >
+                    github.com/bettysumnikova
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center group">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
+                  <Linkedin className="text-accent" size={20} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-text/60 mb-1">LinkedIn</h4>
+                  <a 
+                    href="https://linkedin.com/in/alzbetasumnikova" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-text hover:text-accent transition-colors duration-300"
+                  >
+                    linkedin.com/in/alzbetasumnikova
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -104,44 +132,64 @@ const ContactSection: React.FC = () => {
               name="contact"
               method="POST"
               data-netlify="true"
-              data-netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
               className="space-y-6"
             >
               <input type="hidden" name="form-name" value="contact" />
-              <p className="hidden">
-                <label>
-                  Don't fill this out if you're human: <input name="bot-field" />
+
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-text/80 mb-1">
+                  Name
                 </label>
-              </p>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formState.name}
+                  onChange={handleChange}
+                  required
+                  className={`w-full px-4 py-2 rounded-lg bg-white border ${
+                    errors.name ? 'border-red-300' : 'border-accent/20'
+                  } focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-300`}
+                />
+                {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+              </div>
 
-              <InputField
-                id="name"
-                name="name"
-                label="Name"
-                value={formState.name}
-                onChange={handleChange}
-                error={errors.name}
-              />
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-text/80 mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  required
+                  className={`w-full px-4 py-2 rounded-lg bg-white border ${
+                    errors.email ? 'border-red-300' : 'border-accent/20'
+                  } focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-300`}
+                />
+                {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+              </div>
 
-              <InputField
-                id="email"
-                name="email"
-                label="Email"
-                value={formState.email}
-                onChange={handleChange}
-                error={errors.email}
-                type="email"
-              />
-
-              <TextareaField
-                id="message"
-                name="message"
-                label="Message"
-                value={formState.message}
-                onChange={handleChange}
-                error={errors.message}
-              />
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-text/80 mb-1">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  value={formState.message}
+                  onChange={handleChange}
+                  required
+                  className={`w-full px-4 py-2 rounded-lg bg-white border ${
+                    errors.message ? 'border-red-300' : 'border-accent/20'
+                  } focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-300`}
+                />
+                {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
+              </div>
 
               <button
                 type="submit"
@@ -166,104 +214,5 @@ const ContactSection: React.FC = () => {
     </section>
   );
 };
-
-// Separated smaller components for neatness
-
-const ContactInfo = ({
-  icon,
-  label,
-  link,
-  text,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  link: string;
-  text: string;
-}) => (
-  <div className="flex items-center group">
-    <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
-      {icon}
-    </div>
-    <div>
-      <h4 className="text-sm font-medium text-text/60 mb-1">{label}</h4>
-      <a 
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-text hover:text-accent transition-colors duration-300"
-      >
-        {text}
-      </a>
-    </div>
-  </div>
-);
-
-const InputField = ({
-  id,
-  name,
-  label,
-  value,
-  onChange,
-  error,
-  type = 'text',
-}: {
-  id: string;
-  name: string;
-  label: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error?: string;
-  type?: string;
-}) => (
-  <div>
-    <label htmlFor={id} className="block text-sm font-medium text-text/80 mb-1">
-      {label}
-    </label>
-    <input
-      type={type}
-      id={id}
-      name={name}
-      value={value}
-      onChange={onChange}
-      className={`w-full px-4 py-2 rounded-lg bg-white border ${
-        error ? 'border-red-300' : 'border-accent/20'
-      } focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-300`}
-    />
-    {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
-  </div>
-);
-
-const TextareaField = ({
-  id,
-  name,
-  label,
-  value,
-  onChange,
-  error,
-}: {
-  id: string;
-  name: string;
-  label: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  error?: string;
-}) => (
-  <div>
-    <label htmlFor={id} className="block text-sm font-medium text-text/80 mb-1">
-      {label}
-    </label>
-    <textarea
-      id={id}
-      name={name}
-      rows={4}
-      value={value}
-      onChange={onChange}
-      className={`w-full px-4 py-2 rounded-lg bg-white border ${
-        error ? 'border-red-300' : 'border-accent/20'
-      } focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-300`}
-    />
-    {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
-  </div>
-);
 
 export default ContactSection;
