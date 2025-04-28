@@ -22,14 +22,13 @@ const ContactSection: React.FC = () => {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
-    
+
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -37,51 +36,31 @@ const ContactSection: React.FC = () => {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    
+
     if (!formState.name.trim()) {
       newErrors.name = 'Name is required';
     }
-    
+
     if (!formState.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^\S+@\S+\.\S+$/.test(formState.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-    
+
     if (!formState.message.trim()) {
       newErrors.message = 'Message is required';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (validateForm()) {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!validateForm()) {
+      e.preventDefault(); // prevent submission if invalid
+    } else {
       setIsSubmitting(true);
-      
-      try {
-        const form = e.target as HTMLFormElement;
-        const formData = new FormData(form);
-        
-        const response = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData as any).toString()
-        });
-
-        if (response.ok) {
-          setIsSubmitted(true);
-          setFormState({ name: '', email: '', message: '' });
-          setTimeout(() => {
-            setIsSubmitted(false);
-          }, 5000);
-        }
-      } finally {
-        setIsSubmitting(false);
-      }
+      // Let the form submit naturally
     }
   };
 
@@ -90,72 +69,42 @@ const ContactSection: React.FC = () => {
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl font-bold text-text mb-2">Get in Touch</h2>
         <div className="w-20 h-1 bg-accent mb-10"></div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
             <p className="text-text/70 mb-8">
               Have a project in mind or just want to say hello? I'd love to hear from you. 
               Fill out the form or reach out through any of the platforms below.
             </p>
-            
+
             <div className="space-y-6">
-              <div className="flex items-center group">
-                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
-                  <Mail className="text-accent" size={20} />
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium text-text/60 mb-1">Email</h4>
-                  <a 
-                    href="mailto:alzbeta.sumnikova@gmail.com" 
-                    className="text-text hover:text-accent transition-colors duration-300"
-                  >
-                    alzbeta.sumnikova@gmail.com
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-center group">
-                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
-                  <Github className="text-accent" size={20} />
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium text-text/60 mb-1">GitHub</h4>
-                  <a 
-                    href="https://github.com/bettysumnikova" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-text hover:text-accent transition-colors duration-300"
-                  >
-                    github.com/bettysumnikova
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-center group">
-                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
-                  <Linkedin className="text-accent" size={20} />
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium text-text/60 mb-1">LinkedIn</h4>
-                  <a 
-                    href="https://linkedin.com/in/alzbetasumnikova" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-text hover:text-accent transition-colors duration-300"
-                  >
-                    linkedin.com/in/alzbetasumnikova
-                  </a>
-                </div>
-              </div>
+              <ContactInfo
+                icon={<Mail className="text-accent" size={20} />}
+                label="Email"
+                link="mailto:alzbeta.sumnikova@gmail.com"
+                text="alzbeta.sumnikova@gmail.com"
+              />
+              <ContactInfo
+                icon={<Github className="text-accent" size={20} />}
+                label="GitHub"
+                link="https://github.com/bettysumnikova"
+                text="github.com/bettysumnikova"
+              />
+              <ContactInfo
+                icon={<Linkedin className="text-accent" size={20} />}
+                label="LinkedIn"
+                link="https://linkedin.com/in/alzbetasumnikova"
+                text="linkedin.com/in/alzbetasumnikova"
+              />
             </div>
           </div>
-          
+
           <div>
             <form
               name="contact"
               method="POST"
               data-netlify="true"
-              netlify-honeypot="bot-field"
+              data-netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
               className="space-y-6"
             >
@@ -165,58 +114,35 @@ const ContactSection: React.FC = () => {
                   Don't fill this out if you're human: <input name="bot-field" />
                 </label>
               </p>
-              
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-text/80 mb-1">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formState.name}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-2 rounded-lg bg-white border ${
-                    errors.name ? 'border-red-300' : 'border-accent/20'
-                  } focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-300`}
-                />
-                {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-text/80 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-2 rounded-lg bg-white border ${
-                    errors.email ? 'border-red-300' : 'border-accent/20'
-                  } focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-300`}
-                />
-                {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-text/80 mb-1">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  value={formState.message}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-2 rounded-lg bg-white border ${
-                    errors.message ? 'border-red-300' : 'border-accent/20'
-                  } focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-300`}
-                />
-                {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
-              </div>
-              
+
+              <InputField
+                id="name"
+                name="name"
+                label="Name"
+                value={formState.name}
+                onChange={handleChange}
+                error={errors.name}
+              />
+
+              <InputField
+                id="email"
+                name="email"
+                label="Email"
+                value={formState.email}
+                onChange={handleChange}
+                error={errors.email}
+                type="email"
+              />
+
+              <TextareaField
+                id="message"
+                name="message"
+                label="Message"
+                value={formState.message}
+                onChange={handleChange}
+                error={errors.message}
+              />
+
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -233,12 +159,6 @@ const ContactSection: React.FC = () => {
                   </>
                 )}
               </button>
-              
-              {isSubmitted && (
-                <div className="p-4 bg-accent/10 border border-accent/20 text-accent-dark rounded-lg">
-                  Thanks for your message! I'll get back to you soon.
-                </div>
-              )}
             </form>
           </div>
         </div>
@@ -246,5 +166,104 @@ const ContactSection: React.FC = () => {
     </section>
   );
 };
+
+// Separated smaller components for neatness
+
+const ContactInfo = ({
+  icon,
+  label,
+  link,
+  text,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  link: string;
+  text: string;
+}) => (
+  <div className="flex items-center group">
+    <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent/20 transition-colors duration-300">
+      {icon}
+    </div>
+    <div>
+      <h4 className="text-sm font-medium text-text/60 mb-1">{label}</h4>
+      <a 
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-text hover:text-accent transition-colors duration-300"
+      >
+        {text}
+      </a>
+    </div>
+  </div>
+);
+
+const InputField = ({
+  id,
+  name,
+  label,
+  value,
+  onChange,
+  error,
+  type = 'text',
+}: {
+  id: string;
+  name: string;
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
+  type?: string;
+}) => (
+  <div>
+    <label htmlFor={id} className="block text-sm font-medium text-text/80 mb-1">
+      {label}
+    </label>
+    <input
+      type={type}
+      id={id}
+      name={name}
+      value={value}
+      onChange={onChange}
+      className={`w-full px-4 py-2 rounded-lg bg-white border ${
+        error ? 'border-red-300' : 'border-accent/20'
+      } focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-300`}
+    />
+    {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+  </div>
+);
+
+const TextareaField = ({
+  id,
+  name,
+  label,
+  value,
+  onChange,
+  error,
+}: {
+  id: string;
+  name: string;
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  error?: string;
+}) => (
+  <div>
+    <label htmlFor={id} className="block text-sm font-medium text-text/80 mb-1">
+      {label}
+    </label>
+    <textarea
+      id={id}
+      name={name}
+      rows={4}
+      value={value}
+      onChange={onChange}
+      className={`w-full px-4 py-2 rounded-lg bg-white border ${
+        error ? 'border-red-300' : 'border-accent/20'
+      } focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors duration-300`}
+    />
+    {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+  </div>
+);
 
 export default ContactSection;
