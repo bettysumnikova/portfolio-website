@@ -3,7 +3,7 @@ import { ChevronDown, User } from 'lucide-react';
 
 const HomeSection = () => {
   return (
-    <section id="home" className="min-h-screen relative flex items-center pt-24">
+    <section id="home" className="min-h-screen relative flex items-center mt-24">
       <div className="absolute inset-0 bg-gradient-to-br from-accent-light/10 to-secondary-light/10">
         <div className="absolute inset-0 opacity-10" 
           style={{ 
