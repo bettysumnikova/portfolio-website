@@ -73,7 +73,7 @@ const hobbies: Activity[] = [
     description: '',
     image: '/assets/images/beyond/creativity/creativity-placeholder.png',
     galleryImages: [
-      '/assets/images/beyond/creativity/gallery1-placeholder.png',
+      '/assets/images/beyond/creativity/gallery1-placeholder.jpg',
       '/assets/images/beyond/creativity/gallery2-placeholder.png',
       '/assets/images/beyond/creativity/gallery3-placeholder.jpg',
       '/assets/images/beyond/creativity/gallery4-placeholder.png',
