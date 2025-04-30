@@ -19,7 +19,7 @@ const volunteering: Activity[] = [
     link: 'https://example.com/cambodia-volunteering',
     galleryImages: [
       '/assets/images/beyond/volunteering/gallery1-placeholder.jpg',
-      '/assets/images/beyond/volunteering/gallery2-placeholder.jpg',
+      '/assets/images/beyond/volunteering/gallery2-placeholder.jpeg',
       '/assets/images/beyond/volunteering/gallery3-placeholder.jpg',
       '/assets/images/beyond/volunteering/gallery4-placeholder.jpg',
       '/assets/images/beyond/volunteering/gallery5-placeholder.jpg',
@@ -43,7 +43,7 @@ const volunteering: Activity[] = [
       '/assets/images/beyond/cookbook/gallery5-placeholder.jpg',
       '/assets/images/beyond/cookbook/gallery6-placeholder.png',
       '/assets/images/beyond/cookbook/gallery7-placeholder.png',
-      '/assets/images/beyond/cookbook/gallery8-placeholder.JPG',
+      '/assets/images/beyond/cookbook/gallery8-placeholder.jpeg',
       '/assets/images/beyond/cookbook/gallery9-placeholder.png'
     ],
     longDescription: 'This cookbook is divided into seven sections: basic savory recipes, small dishes and soups, main dishes, basic sweet recipes, sweet dishes, desserts, and cakes. The basic recipes can be easily combined with others—for example, serving soup with homemade bread or adding quick spreads and toppings to enhance the flavor. These small extras bring more depth and texture to meals, creating the feeling of a dish made with care and love.\n\nThe cover features a lemon, an ingredient I adore for its sour, fresh taste, which appears throughout the book. Lemons symbolize how simple ingredients can elevate a dish with unexpected depth.\n\nThis cookbook includes 80 recipes, all of which I have carefully selected and designed to inspire easy, flavorful meals. I illustrated the book, did the typesetting in InDesign, and personally published it. Each recipe reflects my love for cooking and my desire to make food feel personal and approachable, yet special.'
@@ -56,32 +56,32 @@ const hobbies: Activity[] = [
     description: '',
     image: '/assets/images/beyond/travel/travel-placeholder.jpg',
     galleryImages: [
-      '/assets/images/beyond/travel/gallery1-placeholder.png',
-      '/assets/images/beyond/travel/gallery2-placeholder.png',
-      '/assets/images/beyond/travel/gallery3-placeholder.png',
+      '/assets/images/beyond/travel/gallery1-placeholder.jpg',
+      '/assets/images/beyond/travel/gallery2-placeholder.jpg',
+      '/assets/images/beyond/travel/gallery3-placeholder.jpg',
       '/assets/images/beyond/travel/gallery4-placeholder.jpg',
-      '/assets/images/beyond/travel/gallery5-placeholder.png',
-      '/assets/images/beyond/travel/gallery6-placeholder.png',
-      '/assets/images/beyond/travel/gallery7-placeholder.png',
-      '/assets/images/beyond/travel/gallery8-placeholder.png',
-      '/assets/images/beyond/travel/gallery9-placeholder.png'
+      '/assets/images/beyond/travel/gallery5-placeholder.jpg',
+      '/assets/images/beyond/travel/gallery6-placeholder.jpg',
+      '/assets/images/beyond/travel/gallery7-placeholder.jpg',
+      '/assets/images/beyond/travel/gallery8-placeholder.jpg',
+      '/assets/images/beyond/travel/gallery9-placeholder.jpg'
     ],
     longDescription: 'My travels have been a journey of self-discovery and growth. From walking the Camino de Santiago to learning to dive, each experience has taught me valuable lessons about perseverance, resilience, and embracing new challenges. I\'ve gained a greater appreciation for the nature around us, whether night swimming with bioluminescent plankton in Costa Rica, camping in the desert in Morocco, or hiking through Kyrgyzstan\'s mountains. Travel has deepened my understanding of different cultures and perspectives, especially during my time living with a family in Cambodia. I also love capturing these moments through photography, as a way to remind myself of the beauty in the world.'
   },
   {
     title: 'Creativity',
     description: '',
-    image: '/assets/images/beyond/creativity/creativity-placeholder.png',
+    image: '/assets/images/beyond/creativity/creativity-placeholder.jpg',
     galleryImages: [
-      '/assets/images/beyond/creativity/gallery1-placeholder.jpg',
-      '/assets/images/beyond/creativity/gallery2-placeholder.png',
+      '/assets/images/beyond/creativity/gallery1-placeholder.jpeg',
+      '/assets/images/beyond/creativity/gallery2-placeholder.jpg',
       '/assets/images/beyond/creativity/gallery3-placeholder.jpg',
-      '/assets/images/beyond/creativity/gallery4-placeholder.png',
-      '/assets/images/beyond/creativity/gallery5-placeholder.png',
-      '/assets/images/beyond/creativity/gallery6-placeholder.png',
+      '/assets/images/beyond/creativity/gallery4-placeholder.jpg',
+      '/assets/images/beyond/creativity/gallery5-placeholder.jpg',
+      '/assets/images/beyond/creativity/gallery6-placeholder.jpg',
       '/assets/images/beyond/creativity/gallery7-placeholder.JPG',
-      '/assets/images/beyond/creativity/gallery8-placeholder.png',
-      '/assets/images/beyond/creativity/gallery9-placeholder.PNG'
+      '/assets/images/beyond/creativity/gallery8-placeholder.jpg',
+      '/assets/images/beyond/creativity/gallery9-placeholder.jpg'
     ],
     longDescription: 'I\'ve always believed in taking my hobbies to the next level, finding purpose and meaning in everything I do. My journey into pottery began with the quest for the perfect coffee mug. When I couldn\'t find one, I decided to learn how to throw on a wheel, trim, glaze, and perfect the design, eventually creating over 60 of my own mugs. Yoga, which started as a personal practice, inspired me to become a certified instructor through Yoga Alliance (200-hour certification).\n\nMy love for baking eventually led me to write a cookbook and also to the joy of creating cakes for special occasions like birthdays and weddings. Recently, I\'ve gotten into watercolors, blending this new passion with my other ones. I enjoy painting small sketches during my travels, and I got to illustrate my cookbook as well. These creative outlets are more than just hobbies for me, they\'re a way to express myself and continually grow.'
   }

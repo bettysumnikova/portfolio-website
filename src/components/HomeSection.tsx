@@ -40,7 +40,7 @@ const HomeSection = () => {
           <div className="flex-1 flex justify-center">
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent/20 shadow-soft transform hover:scale-105 transition-all duration-300">
               <img
-                src="/assets/images/profile-placeholder.png"
+                src="/assets/images/profile_placeholder.jpg"
                 alt="Betty Sumnikova"
                 className="w-full h-full object-cover"
               />
