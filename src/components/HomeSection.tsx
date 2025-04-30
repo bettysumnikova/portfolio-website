@@ -19,13 +19,7 @@ const HomeSection = () => {
               Hi, I'm <span className="text-accent-dark">Betty</span>
             </h1>
             <p className="text-lg md:text-xl text-text/80 leading-relaxed mb-8">
-              I'm passionate about learning and stepping outside my comfort zone. Whether that's mastering math after hating it, or publishing a cookbook after barely knowing how to cook pasta — all while studying Econometrics and Operations Research.
-            </p>
-            <p className="text-lg md:text-xl text-text/80 leading-relaxed mb-8">
-              I have a strong quantitative background: I graduated with honors, ranked among the top students at the Prague University of Economics and Business, and specialized in data science, analysis, and visualisations.
-            </p>
-            <p className="text-lg md:text-xl text-text/80 leading-relaxed mb-8">
-              But beyond the numbers, I love connecting ideas and solving real-world problems. Outside of work, I’m usually diving — into oceans, pottery, yoga, or baking. I guess you could say I'm drawn to projects that start messy and turn into something beautiful.
+            Recent master's graduate in Econometrics and Operational Research, passionate about turning data into actionable insights. With a blend of analytical precision and creativity, I excel at solving complex problems and communicating solutions. Proficient in Python, SQL, and creating interactive dashboards.
             </p>
             <div className="flex flex-wrap gap-4">
               <a
