@@ -9,7 +9,6 @@ interface Project {
   tags: string[];
   github?: string;
   demo?: string;
-  demoStatus?: 'coming-soon' | 'live';
   link?: string;
 }
 
@@ -23,13 +22,12 @@ interface Certification {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Stock Data Analysis',
-    description: 'Responsive web app for visualizing and analyzing stock market trends and historical data.',
+    title: 'Vancouver Trees Dashboard',
+    description: 'An interactive dashboard that visualizes Vancouver\’s public tree data using live API access, filtering, maps, and visual summaries.',
     image: '/assets/images/projects/project1-placeholder.jpg',
-    tags: ['Python', 'Visualisation', 'Machine learning', 'SQL', 'AI'],
-    // github: '#',
-    demo: '#',
-    demoStatus: 'coming-soon'
+    tags: ['Python', 'Visualisation', 'AI', 'Data Processing', 'Data Analysis'],
+    github: 'https://github.com/bettysumnikova/vancouver-trees',
+    demo: 'https://vancouver-trees.streamlit.app/',
   },
   {
     id: 2,
